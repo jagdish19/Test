@@ -1,0 +1,11 @@
+#!/bin/bash
+DIRECTORY=/home/ec2-user/config
+if [ -d $DIRECTORY/backup ]; then
+mv /home/ec2-user/config/*.txt $DIRECTORY/backup/.
+cp -pr /home/ec2-user/config_test/* /home/ec2-user/config/.
+mv $DIRECTORY/backup $DIRECTORY/backup_"$(date +%Y%m%d-%H%M%S)"
+mkdir $DIRECTORY/backup
+else
+mkdir $DIRECTORY/backup
+cp -pr /home/ec2-user/config_test/* $DIRECTORY/.
+fi
